@@ -23,7 +23,7 @@ class DataController extends Controller
 
                 $id = DB::table('data')->insertGetId([
                     'user_id' => $user_id,
-                    'json_data' => $json,
+                    'json' => $json,
                 ]);
 
                 $this->logExecutionTimeAndMemoryUsage("Data saved with ID {$id} for user ID {$user_id}.", $start_time, $start_memory);
@@ -34,17 +34,17 @@ class DataController extends Controller
                 $id = $request->input('id');
                 $instruction = $request->input('instruction');
 
-                $json_data = DB::table('data')
+                $json = DB::table('data')
                     ->where('id', $id)
-                    ->value('json_data');
-                $data = json_decode($json_data);
+                    ->value('json');
+                $data = json_decode($json);
 
                 // Apply the instructions to the data object
                 eval($instruction);
 
                 DB::table('data')
                     ->where('id', $id)
-                    ->update(['json_data' => json_encode($data)]);
+                    ->update(['json' => json_encode($data)]);
 
                 $this->logExecutionTimeAndMemoryUsage("Data updated with ID {$id} for user ID {$user_id}.", $start_time, $start_memory);
 

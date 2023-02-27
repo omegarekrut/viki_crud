@@ -65,14 +65,18 @@
         $(document).ready(function() {
             $('#choose_your_function').change(function() {
                 var selectedMethod = $(this).val();
-                if (selectedMethod == 'JSON') {
-                    $('#div_json').removeClass("d-none");
-                    $('#div_instruction').addClass("d-none");
-                    $('#instruction').val("")
-                } else if (selectedMethod == 'instruction') {
-                    $('#div_instruction').removeClass("d-none");
-                    $('#div_json').addClass("d-none");
-
+                switch (selectedMethod) {
+                    case 'JSON':
+                        $('#div_json').removeClass("d-none");
+                        $('#div_instruction').addClass("d-none");
+                        $('#instruction').val("");
+                        break;
+                    case 'instruction':
+                        $('#div_instruction').removeClass("d-none");
+                        $('#div_json').addClass("d-none");
+                        break;
+                    default:
+                        break;
                 }
             });
 
@@ -82,23 +86,22 @@
                 e.preventDefault();
 
                 let method = $("#method").val();
-                let json = $("#json").val().replace(/\r?\n/g, '<br />');
+                // let json = $("#json").val().replace(/\r?\n/g, '<br />');
                 let instruction = $("#instruction").val();
                 const option = $("#choose_your_function").val()
 
                 $.ajax({
                     url: "/data",
-                    type: method,
+                    type: 'GET',
+                    headers: {
+                        'X-CSRF-TOKEN': token
+                    },
                     data: JSON.stringify({
-                        "_token": token,
                         option: option,
-                        json: JSON.stringify(json),
+                        json: json,
                         instructions: instruction
                     }),
                     contentType: "application/json",
-                    headers: {
-                        Authorization: "Bearer " + token,
-                    },
                     success: function(response) {
                         console.log('success');
                     },
