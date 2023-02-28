@@ -212,4 +212,6 @@ return [
         // 'ExampleClass' => App\Example\ExampleClass::class,
     ])->toArray(),
 
+    // Maximum number of requests per minute
+    'max_requests_per_minute' => 60,
 ];

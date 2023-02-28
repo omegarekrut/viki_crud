@@ -30,12 +30,11 @@
                         <div class="mb-3">
                             <label for="choose_your_function" class="form-label">Method:</label>
                             <select class="form-select" id="choose_your_function" name="method">
-                                <option value="neutral" selected disabled>options</option>
-                                <option value="JSON">JSON</option>
+                                <option value="JSON" selected>JSON</option>
                                 <option value="instruction">instruction</option>
                             </select>
                         </div>
-                        <div id="div_json" class="d-none">
+                        <div id="div_json" class="">
                             <div class="mb-3">
                                 <label for="method" class="form-label">Method:</label>
                                 <select class="form-select" id="method" name="method">
@@ -86,13 +85,12 @@
                 e.preventDefault();
 
                 let method = $("#method").val();
-                // let json = $("#json").val().replace(/\r?\n/g, '<br />');
+                let json = $("#json").val();
                 let instruction = $("#instruction").val();
-                const option = $("#choose_your_function").val()
-
+                let option = $("#choose_your_function").val()
                 $.ajax({
                     url: "/data",
-                    type: 'GET',
+                    type: method,
                     headers: {
                         'X-CSRF-TOKEN': token
                     },
