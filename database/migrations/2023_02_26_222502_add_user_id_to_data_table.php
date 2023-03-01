@@ -17,7 +17,7 @@ return new class extends Migration {
                 ->foreign('user_id')
                 ->references('id')
                 ->on('users');
-            $table->json('json_data')->nullable();
+            $table->json('json')->nullable();
             $table->timestamps();
         });
     }
