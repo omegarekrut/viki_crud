@@ -1,4 +1,4 @@
-**viki_crid**
+**viki_crud**
 
 ## Description
 
@@ -21,7 +21,7 @@ First page is simple form to store JSON objects in database. Second page is a fu
 * Configure `.env` file to connect the project to your DB;
 * Command`php artisan migrate`
 * Configure your nginx configuration on path `/etc/nginx/sites-enabled/your_config_here.conf`
-My configuration for example
+Here is my configuration for [example](https://github.com/omegarekrut/viki_crud/blob/master/viki_crud.conf)
 
 ## Version History
 
