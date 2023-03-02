@@ -15,7 +15,7 @@ First page is simple form to store JSON objects in database. Second page is a fu
 
 ### Installing
 
-* [Copy](https://github.com/omegarekrut/viki_crud.git) the program;
+* [Copy or git clone](https://github.com/omegarekrut/viki_crud.git) the repository;
 * Command `composer install`
 * Command `npm install`;
 * Configure `.env` file to connect the project to your DB;
